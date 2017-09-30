@@ -5,28 +5,25 @@ export interface Props {
     errorMessage?: string;
 
     onSave?: () => void;
-    onChangeTranslation?: (text: string) => void;
-    isEditing?: boolean;
-
+    onChangeTextArea?: (text: string) => void;
 }
 
-const onSave = (props: Props) => () => {
+const onSave = (props: {onSave?: () => void}) => () => {
     if (!props.onSave) { return; }
     props.onSave();
 };
 
-const onChangeTranslation = (props: Props) => (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (!props.onChangeTranslation) { return; }
-    props.onChangeTranslation(ev.target.value);
+const onChangeTextArea = (props: Props) => (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!props.onChangeTextArea) { return; }
+    props.onChangeTextArea(ev.target.value);
 };
 
-const Buttons = (props: Props) => (
+const Buttons = (props: {onSave?: () => void}) => (
     <div className="field is-grouped">
         <p className="control">
             <button
                 className="button is-primary is-small"
                 onClick={onSave(props)}
-                disabled={(!props.isEditing)}
             >
                 Save
             </button>
@@ -45,7 +42,7 @@ const EditCell = (props: Props) => {
                     className="textarea is-small is-danger"
                     placeholder="翻訳"
                     value={props.translation}
-                    onChange={onChangeTranslation(props)}
+                    onChange={onChangeTextArea(props)}
                 />
                 <p className="help is-danger" >{props.errorMessage}</p>
             </div>) : (
@@ -55,7 +52,7 @@ const EditCell = (props: Props) => {
                         ref={el => { translationTextArea = el;  }}
                         className="textarea is-small"
                         value={props.translation}
-                        onChange={onChangeTranslation(props)}
+                        onChange={onChangeTextArea(props)}
                     />
                 </div>
             )
