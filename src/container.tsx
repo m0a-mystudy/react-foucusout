@@ -9,7 +9,6 @@ interface Props {
 
 interface State {
   text: string;
-  dontTranslate: boolean;
 }
 
 export default class EditorCell extends React.Component<Props, State> {
@@ -28,7 +27,6 @@ export default class EditorCell extends React.Component<Props, State> {
     super(props);
     this.state = {
       text: '',
-      dontTranslate: false,
     };
   }
   onChangeTextArea(text: string) {
