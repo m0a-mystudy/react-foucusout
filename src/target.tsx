@@ -10,7 +10,7 @@ const onChangeTextArea = (props: Props) => (ev: React.ChangeEvent<HTMLTextAreaEl
     props.onChangeTextArea(ev.target.value);
 };
 
-const EditCell = (props: Props) => {
+const SomeTextArea = (props: Props) => {
     const MyTextArea = (pp: Props) => (
         <textarea
             cols={400}
@@ -27,4 +27,4 @@ const EditCell = (props: Props) => {
     );
 };
 
-export default EditCell;
+export default SomeTextArea;
